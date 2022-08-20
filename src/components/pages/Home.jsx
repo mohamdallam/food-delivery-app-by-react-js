@@ -33,10 +33,11 @@ const featureData = [
 const Home = () => {
   return (
     <Helmet>
+      {/* ======= Hero Section ======= */}
       <section>
         <Container>
           <Row>
-            {/* ======== Col 1 ========= */}
+            {/* ==== Col 1 ==== */}
             <Col lg="6" md="6">
               <div className="hero__content  ">
                 <h5 className="mb-3">Easy way to make an order</h5>
@@ -80,7 +81,7 @@ const Home = () => {
               </div>
             </Col>
 
-            {/* ======== Col 2 ========= */}
+            {/* ==== Col 2 ==== */}
             <Col lg="6" md="6">
               <div className="hero__img">
                 <img src={heroImg} alt="hero-img" className="w-100" />
@@ -90,12 +91,12 @@ const Home = () => {
         </Container>
       </section>
 
-      {/* ======= Category ======= */}
+      {/* ======= Category Section ======= */}
       <section>
         <Category />-
       </section>
 
-      {/* ======= Category ======= */}
+      {/* ======= Category Section ======= */}
       <section>
         <Container>
           <Row>
@@ -111,7 +112,7 @@ const Home = () => {
               </p>
               <p className="feature__text">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Aperiam, eius.{" "}
+                Aperiam, eius.
               </p>
             </Col>
 
@@ -131,6 +132,8 @@ const Home = () => {
           </Row>
         </Container>
       </section>
+
+      <section></section>
     </Helmet>
   );
 };
