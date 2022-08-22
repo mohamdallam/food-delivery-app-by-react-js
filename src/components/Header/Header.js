@@ -1,8 +1,10 @@
-import React, { useRef } from "react";
+import React, { useRef, useEffect } from "react";
 import { Container } from "react-bootstrap";
 import logo from "../../assets/images/res-logo.png";
 import { NavLink, Link } from "react-router-dom";
 import "../../components/Styles/header.css";
+import { useSelector, useDispatch } from "react-redux";
+import { cartUiActions } from "../store/shopping-cart/cartUiSlice";
 
 const nav__links = [
   {
@@ -25,9 +27,32 @@ const nav__links = [
 
 const Header = () => {
   const menuRef = useRef(null);
+  // const headerRef = useRef(null);
   const toogleMenu = () => menuRef.current.classList.toggle("show__menu");
+  const totalQuantity = useSelector((state) => state.cart.totalQuantity);
+  const dispatch = useDispatch();
+
+  const toggleCart = () => {
+    dispatch(cartUiActions.toggle());
+  };
+
+  // useEffect(() => {
+  //   window.addEventListener("scroll", () => {
+  //     if (
+  //       document.body.scrollTop > 80 ||
+  //       document.documentElement.scrollTop > 80
+  //     ) {
+  //       headerRef.current.classList.add("header__shrink");
+  //     } else {
+  //       headerRef.current.classList.remove("header__shrink");
+  //     }
+  //   });
+
+  //   return () => window.removeEventListener("scroll");
+  // }, []);
 
   return (
+    // <header className="header" ref={headerRef}>
     <header className="header">
       <Container>
         <div className="nav__wrapper d-flex align-items-center justify-content-between">
@@ -57,9 +82,9 @@ const Header = () => {
 
           {/* ======== nav right icons ========= */}
           <div className="nav__right d-flex align-items-center gap-4">
-            <span className="cart__icon">
+            <span className="cart__icon" onClick={toggleCart}>
               <i className="ri-shopping-basket-line"></i>
-              <span className="cart__badge">3</span>
+              <span className="cart__badge">{totalQuantity}</span>
             </span>
 
             <span className="user">

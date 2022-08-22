@@ -11,6 +11,7 @@ const categoryData = [
     display: "Fastfood",
     imgUrl: categoryImg01,
   },
+
   {
     display: "Pizza",
     imgUrl: categoryImg02,
