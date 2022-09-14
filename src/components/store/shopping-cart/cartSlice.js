@@ -11,7 +11,7 @@ const cartSlice = createSlice({
   initialState,
 
   reducers: {
-    // =========== add item ============
+    // * =========== add item ===========================================
     addItem(state, action) {
       const newItem = action.payload;
       const existingItem = state.cartItems.find(
@@ -43,7 +43,7 @@ const cartSlice = createSlice({
       );
     },
 
-    // ========= remove item ========
+    // * ========= remove item =============================================
 
     removeItem(state, action) {
       const id = action.payload;
@@ -64,7 +64,7 @@ const cartSlice = createSlice({
       );
     },
 
-    //============ delete item ===========
+    // * ============ delete item =======================================
 
     deleteItem(state, action) {
       const id = action.payload;

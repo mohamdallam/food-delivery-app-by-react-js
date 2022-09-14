@@ -10,6 +10,7 @@ const CartItem = ({ item }) => {
   const { id, title, price, image01, quantity, totalPrice } = item;
 
   const dispatch = useDispatch();
+
   const incrementItem = () => {
     dispatch(
       cartActions.addItem({

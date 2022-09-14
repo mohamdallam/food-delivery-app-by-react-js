@@ -1,9 +1,12 @@
-import React, { useRef, useEffect } from "react";
 import { Container } from "react-bootstrap";
-import logo from "../../assets/images/res-logo.png";
+import React, { useRef, useEffect } from "react";
+
 import { NavLink, Link } from "react-router-dom";
-import "../../components/Styles/header.css";
 import { useSelector, useDispatch } from "react-redux";
+
+import "./header.css";
+import logo from "../../assets/images/res-logo.png";
+
 import { cartUiActions } from "../store/shopping-cart/cartUiSlice";
 
 const nav__links = [
@@ -11,14 +14,17 @@ const nav__links = [
     display: "Home",
     path: "/home",
   },
+
   {
     display: "Foods",
     path: "/foods",
   },
+
   {
     display: "Cart",
     path: "/cart",
   },
+
   {
     display: "Contact",
     path: "/contact",
@@ -26,43 +32,35 @@ const nav__links = [
 ];
 
 const Header = () => {
-  const menuRef = useRef(null);
-  // const headerRef = useRef(null);
-  const toogleMenu = () => menuRef.current.classList.toggle("show__menu");
-  const totalQuantity = useSelector((state) => state.cart.totalQuantity);
+  const headerRef = useRef(null);
+
+  useEffect(() => {
+    window.addEventListener("scroll", () => {
+      headerRef.current.classList.add("header__shrink");
+    });
+  }, []);
+
   const dispatch = useDispatch();
+  const totalQuantity = useSelector((state) => state.cart.totalQuantity);
+
+  const menuRef = useRef(false);
+  const toogleMenu = () => menuRef.current.classList.toggle("show__menu");
 
   const toggleCart = () => {
     dispatch(cartUiActions.toggle());
   };
 
-  // useEffect(() => {
-  //   window.addEventListener("scroll", () => {
-  //     if (
-  //       document.body.scrollTop > 80 ||
-  //       document.documentElement.scrollTop > 80
-  //     ) {
-  //       headerRef.current.classList.add("header__shrink");
-  //     } else {
-  //       headerRef.current.classList.remove("header__shrink");
-  //     }
-  //   });
-
-  //   return () => window.removeEventListener("scroll");
-  // }, []);
-
   return (
-    // <header className="header" ref={headerRef}>
-    <header className="header">
+    <header className="header" ref={headerRef}>
       <Container>
         <div className="nav__wrapper d-flex align-items-center justify-content-between">
-          {/* ======= logo ======= */}
+          {/* // ! ======= logo ======= */}
           <div className="logo">
             <img src={logo} alt="..." />
             <h5>Tasty Treat</h5>
           </div>
 
-          {/* ======= menu ======= */}
+          {/* // !  ======= menu ======= */}
           <div className="navigation" ref={menuRef}>
             <div className="menu d-flex align-items-center gap-5">
               {nav__links.map((item, index) => (
@@ -80,19 +78,22 @@ const Header = () => {
             </div>
           </div>
 
-          {/* ======== nav right icons ========= */}
+          {/* // ! ======== nav right icons ========= */}
           <div className="nav__right d-flex align-items-center gap-4">
+            {/* // ? Cart Icon */}
             <span className="cart__icon" onClick={toggleCart}>
               <i className="ri-shopping-basket-line"></i>
               <span className="cart__badge">{totalQuantity}</span>
             </span>
 
+            {/* // ? User Icon */}
             <span className="user">
               <Link to="/login">
                 <i className="ri-user-line"></i>
               </Link>
             </span>
 
+            {/* // ? Mobile Menu Icon */}
             <span className="mobile__menu" onClick={toogleMenu}>
               <i className="ri-menu-line"></i>
             </span>

@@ -1,15 +1,16 @@
+import "./footer.css";
 import React from "react";
 import { Link } from "react-router-dom";
-import "../../components/Styles/footer.css";
-import { Container, Row, Col, ListGroup, ListGroupItem } from "react-bootstrap";
 import logo from "../../assets/images/res-logo.png";
+import { Container, Row, Col, ListGroup, ListGroupItem } from "react-bootstrap";
 
 const Footer = () => {
   return (
     <footer className="footer">
       <Container>
-        {/* ROW 1  */}
+        {/* // TODO::  ROW 1  */}
         <Row>
+          {/* // ! Logo /////////////////////////// */}
           <Col lg="3" md="4" sm="6">
             <div className=" footer__logo text-start">
               <img src={logo} alt="logo" />
@@ -21,6 +22,7 @@ const Footer = () => {
             </div>
           </Col>
 
+          {/* // ! Delivery Time /////////////////// */}
           <Col lg="3" md="4" sm="6">
             <h5 className="footer__title">Delivery Time</h5>
             <ListGroup className="deliver__time-list">
@@ -36,12 +38,14 @@ const Footer = () => {
             </ListGroup>
           </Col>
 
+          {/* // ! Contact /////////////////// */}
           <Col lg="3" md="4" sm="6">
             <h5 className="footer__title">Contact</h5>
             <ListGroup className="deliver__time-list">
               <ListGroupItem className=" delivery__time-item border-0 ps-0">
                 <p>Alexandria 12 st somoha</p>
               </ListGroupItem>
+
               <ListGroupItem className=" delivery__time-item border-0 ps-0">
                 <span>Phone: 0123456789</span>
               </ListGroupItem>
@@ -52,6 +56,7 @@ const Footer = () => {
             </ListGroup>
           </Col>
 
+          {/* // ! Newsletter /////////////////// */}
           <Col lg="3" md="4" sm="6">
             <h5 className="footer__title">Newsletter</h5>
             <p>Subscribe our newsletter</p>
@@ -64,7 +69,7 @@ const Footer = () => {
           </Col>
         </Row>
 
-        {/* ROW 2  */}
+        {/* // TODO::  ROW 2  Copyright  */}
         <Row className="mt-5">
           <Col lg="6" md="6">
             <p className="copyright__text">
