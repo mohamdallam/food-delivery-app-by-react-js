@@ -1,5 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import "../Styles/all-food.css";
+import "../Styles/pagination.css";
+
+import ReactPaginate from "react-paginate";
 import { Container, Row, Col } from "react-bootstrap";
 
 import Helmet from "../Helmet/Helmet";
@@ -8,6 +11,34 @@ import products from "./../../assets/fake-data/products";
 import ProductCard from "./../UI/Product-Card/ProductCard";
 
 const AllFoods = () => {
+  const [searchTerm, setSearchTerm] = useState("");
+  const [pageNumber, setPageNumber] = useState(0);
+  // const [productData, setproductData] = useState(products);
+
+  const searchedProduct = products.filter((item) => {
+    if (searchTerm.value === "") {
+      return item;
+    }
+    if (item.title.toLowerCase().includes(searchTerm.toLowerCase())) {
+      return item;
+    } else {
+      return console.log("not found");
+    }
+  });
+
+  const productPerPage = 8;
+  const visitedPage = pageNumber * productPerPage;
+  const displayPage = searchedProduct.slice(
+    visitedPage,
+    visitedPage + productPerPage
+  );
+
+  const pageCount = Math.ceil(searchedProduct.length / productPerPage);
+
+  const changePage = ({ selected }) => {
+    setPageNumber(selected);
+  };
+
   return (
     <Helmet title="All-Foods">
       <CommonSection title="All Foods" />
@@ -18,7 +49,12 @@ const AllFoods = () => {
             {/* Col 1 */}
             <Col lg="6" md="6" sm="6" xs="12">
               <div className="search__widget d-flex align-items-center justify-content-between">
-                <input type="text" placeholder="I'm looking for.." />
+                <input
+                  type="text"
+                  placeholder="I'm looking for.."
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                />
                 <span>
                   <i class="ri-search-line"></i>
                 </span>
@@ -38,11 +74,43 @@ const AllFoods = () => {
               </div>
             </Col>
 
-            {products.map((item) => (
-              <Col lg="3" md="4" sm="6" xs="6" key={item.id} className="mb-4">
-                <ProductCard item={item} />
-              </Col>
-            ))}
+            {displayPage
+              .filter((item) => {
+                if (searchTerm.value === "") return item;
+                if (item.title.toLowerCase().includes(searchTerm.toLowerCase()))
+                  return item;
+              })
+
+              .map((item) => (
+                <Col lg="3" md="4" sm="6" xs="6" key={item.id} className="mb-4">
+                  <ProductCard item={item} />
+                </Col>
+              ))}
+
+            <div>
+              <ReactPaginate
+                pageCount={pageCount}
+                onPageChange={changePage}
+                previousLabel={"Prev"}
+                nextLabel={"Next"}
+                containerClassName=" paginationBttns "
+              />
+            </div>
+
+            {/* 
+              {productData
+              .filter((item) => {
+                if (searchTerm.value === "") return item;
+                if (item.title.toLowerCase().includes(searchTerm.toLowerCase()))
+                  return item;
+              })
+
+              .map((item) => (
+                <Col lg="3" md="4" sm="6" xs="6" key={item.id} className="mb-4">
+                  <ProductCard item={item} />
+                </Col>
+              ))} 
+              */}
           </Row>
         </Container>
       </section>
