@@ -96,7 +96,7 @@ const Home = () => {
 
                 <p>
                   Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui
-                  magni delectus tenetur autem, sint veritatis!
+                  magni delectus tenetur autem, sint veritatis,dolor sit amet!
                 </p>
 
                 {/* Button */}
