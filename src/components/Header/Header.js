@@ -57,7 +57,7 @@ const Header = () => {
           {/* // ! ======= logo ======= */}
           <div className="logo">
             <img src={logo} alt="..." />
-            <h5>Tasty Treat</h5>
+            <h5>Tasty Food</h5>
           </div>
 
           {/* // !  ======= menu ======= */}
