@@ -32,7 +32,7 @@ const AllFoods = () => {
     visitedPage,
     visitedPage + productPerPage
   );
-
+     
   const pageCount = Math.ceil(searchedProduct.length / productPerPage);
 
   const changePage = ({ selected }) => {
